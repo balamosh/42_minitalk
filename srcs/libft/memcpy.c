@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   string.h                                           :+:      :+:    :+:   */
+/*   memcpy.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sotherys <sotherys@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/26 22:33:00 by sotherys          #+#    #+#             */
-/*   Updated: 2021/11/26 22:47:18 by sotherys         ###   ########.fr       */
+/*   Created: 2021/11/27 09:45:48 by sotherys          #+#    #+#             */
+/*   Updated: 2021/11/27 09:45:52 by sotherys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRING_H
-# define STRING_H
+#include "libft.h"
 
-# include "libft.h"
-
-typedef struct s_string
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	char	*ptr;
-	size_t	size;
-	size_t	capacity;
-}				t_string;
+	size_t	i;
 
-#endif
+	if (!dst || !src)
+		return (dst);
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char *) dst)[i] = ((unsigned char *) src)[i];
+		++i;
+	}
+	return (dst);
+}

@@ -6,12 +6,21 @@ SRCS_DIR	= srcs/
 HEAD_DIR	= includes/
 BUILD_DIR	= build/
 
+LIBFT_SRCS	= libft/atoi.c			\
+			  libft/memcpy.c		\
+			  libft/print_error.c	\
+			  libft/putchar_fd.c	\
+			  libft/putstr_fd.c		\
+			  libft/string.c
+
 SERVER_SRCS	= server/server.c		\
 			  server/reciever.c
 
-CLIENT_SRCS	= 
+CLIENT_SRCS	= client/client.c
 
-SRCS_FILES	= $(SERVER_SRCS)
+#SRCS_FILES	= $(SERVER_SRCS)
+SERVER_SRCS	:= $(SERVER_SRCS) $(LIBFT_SRCS)
+CLIENT_SRCS	:= $(CLIENT_SRCS) $(LIBFT_SRCS)
 
 OBJS_FILES	= $(SRCS_FILES:.c=.o)
 
@@ -27,8 +36,14 @@ all: $(NAME)
 link: $(OBJS)
 	$(CC) $(OBJS) -o $(NAME)
 
-$(SERVER): $(OBJS)
-	$(CC) $(OBJS) -o $(SERVER)
+#$(SERVER): $(OBJS)
+#	$(CC) $(OBJS) -o $(SERVER)
+
+$(SERVER):
+	make SRCS_FILES='$(SERVER_SRCS)' NAME='$(SERVER)' link
+
+$(CLIENT):
+	make SRCS_FILES='$(CLIENT_SRCS)' NAME='$(CLIENT)' link
 
 -include $(DEPS)
 
