@@ -6,17 +6,19 @@
 /*   By: sotherys <sotherys@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 22:44:02 by sotherys          #+#    #+#             */
-/*   Updated: 2021/11/27 10:58:23 by sotherys         ###   ########.fr       */
+/*   Updated: 2021/11/27 13:09:21 by sotherys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 
-static void	ft_reciever_reset(t_reciever *tab, t_string *str)
+static void	ft_reciever_reset(t_reciever *tab, t_string *str, int new_pid)
 {
-	ft_string_free(str);
+	if (str->ptr)
+		ft_string_free(str);
 	tab->c = 0;
 	tab->bit = 0;
+	tab->pid = new_pid;
 }
 
 static void	ft_reciever_new_byte(t_reciever *tab, t_string *str)
@@ -25,12 +27,12 @@ static void	ft_reciever_new_byte(t_reciever *tab, t_string *str)
 	{
 		write(1, str->ptr, str->size);
 		write(1, "\n", 1);
-		ft_reciever_reset(tab, str);
+		ft_reciever_reset(tab, str, 0);
 	}
 	else if (!ft_string_push_back(str, tab->c))
 	{
 		ft_print_error(0, "Cannot allocate memoty.\n");
-		ft_reciever_reset(tab, str);
+		ft_reciever_reset(tab, str, 0);
 	}
 	else
 	{
@@ -45,8 +47,18 @@ void	ft_reciever(int signal, siginfo_t *info, void *data)
 	static t_string		str = (t_string){NULL, 0, 0};
 
 	(void)data;
-	(void)info;
-	(void)str;
+	if (!tab.pid)
+		tab.pid = info->si_pid;
+	else if (tab.pid != info->si_pid)
+	{
+		if (kill(tab.pid, SIGUSR1))
+		{
+			ft_print_error(0, "Connection lost.\n");
+			ft_reciever_reset(&tab, &str, info->si_pid);
+		}
+		else
+			return ;
+	}
 	if (signal == SIGUSR2)
 		tab.c = tab.c | (1 << tab.bit);
 	if (++tab.bit == 8)

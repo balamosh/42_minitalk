@@ -18,7 +18,9 @@ LIBFT_SRCS	= libft/atoi.c			\
 SERVER_SRCS	= server/server.c		\
 			  server/reciever.c
 
-CLIENT_SRCS	= client/client.c
+CLIENT_SRCS	= client/client.c		\
+			  client/reciever.c		\
+			  client/sender.c
 
 #SRCS_FILES	= $(SERVER_SRCS)
 SERVER_SRCS	:= $(SERVER_SRCS) $(LIBFT_SRCS)

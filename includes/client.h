@@ -8,9 +8,7 @@
 
 unsigned char	g_flag;
 
-int		is_pid_valid(pid_t pid);
-int		send_string(int pid, char *str);
-int		send_char(pid_t pid, char c);
-void	serv_response(int signal, siginfo_t *info, void *data);
+int		ft_sender(pid_t pid, char *str);
+void	ft_reciever(int signal, siginfo_t *info, void *data);
 
 #endif
