@@ -7,9 +7,11 @@ HEAD_DIR	= includes/
 BUILD_DIR	= build/
 
 LIBFT_SRCS	= libft/atoi.c			\
+			  libft/malloc.c		\
 			  libft/memcpy.c		\
 			  libft/print_error.c	\
 			  libft/putchar_fd.c	\
+			  libft/putnbr_fd.c		\
 			  libft/putstr_fd.c		\
 			  libft/string.c
 

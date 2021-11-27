@@ -6,7 +6,7 @@
 /*   By: sotherys <sotherys@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 10:24:40 by sotherys          #+#    #+#             */
-/*   Updated: 2021/11/27 10:24:40 by sotherys         ###   ########.fr       */
+/*   Updated: 2021/11/27 10:59:27 by sotherys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,5 @@ void	serv_response(int signal, siginfo_t *info, void *data)
 	(void)info;
 	(void)data;
 	if (signal == SIGUSR2)
-		ft_putstr_fd("Message is fully printed\n", 1);
-	if (signal == SIGUSR1)
 		g_flag = 1;
 }

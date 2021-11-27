@@ -6,7 +6,7 @@
 /*   By: sotherys <sotherys@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 22:44:02 by sotherys          #+#    #+#             */
-/*   Updated: 2021/11/27 10:22:07 by sotherys         ###   ########.fr       */
+/*   Updated: 2021/11/27 10:58:23 by sotherys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	ft_reciever_new_byte(t_reciever *tab, t_string *str)
 		write(1, "\n", 1);
 		ft_reciever_reset(tab, str);
 	}
-	else if (!ft_string_push_back(str->ptr, tab->c))
+	else if (!ft_string_push_back(str, tab->c))
 	{
 		ft_print_error(0, "Cannot allocate memoty.\n");
 		ft_reciever_reset(tab, str);

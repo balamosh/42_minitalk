@@ -6,7 +6,7 @@
 /*   By: sotherys <sotherys@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:06:54 by sotherys          #+#    #+#             */
-/*   Updated: 2021/11/27 10:45:05 by sotherys         ###   ########.fr       */
+/*   Updated: 2021/11/27 10:56:20 by sotherys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	*ft_memcpy(void *dst, const void *src, size_t n);
 int		ft_atoi(const char *str);
 
 void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
+void	ft_putstr_fd(const char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
 int		ft_print_error(int code, const char *str);
 
 t_bool	ft_string_push_back(t_string *str, char c);

@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   malloc.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sotherys <sotherys@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/26 22:42:09 by sotherys          #+#    #+#             */
-/*   Updated: 2021/11/27 10:57:27 by sotherys         ###   ########.fr       */
+/*   Created: 2021/10/27 03:24:21 by sotherys          #+#    #+#             */
+/*   Updated: 2021/11/27 10:52:15 by sotherys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "server.h"
+#include "libft.h"
 
-int	main(void)
+t_bool	ft_malloc(void **ptr, size_t n)
 {
-	struct sigaction	act;
-
-	sigemptyset(&act.sa_mask);
-	act.sa_sigaction = ft_reciever;
-	act.sa_flags = SA_SIGINFO;
-	ft_putnbr_fd(getpid(), 1);
-	write(1, "\n", 1);
-	if (sigaction(SIGUSR1, &act, NULL) || sigaction(SIGUSR2, &act, NULL))
-		return (1);
-		//return (ft_print_error(1, "Sigaction error.\n"));
-	while (1)
-		pause();
-	return (0);
+	*ptr = malloc(n);
+	if (*ptr)
+		return (true);
+	return (false);
 }
