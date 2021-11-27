@@ -6,7 +6,7 @@
 /*   By: sotherys <sotherys@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 10:24:40 by sotherys          #+#    #+#             */
-/*   Updated: 2021/11/27 12:30:38 by sotherys         ###   ########.fr       */
+/*   Updated: 2021/11/27 13:24:24 by sotherys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int	main(int ac, char **av)
 	{
 		pid = ft_atoi(av[1]);
 		if (kill(pid, 0))
-			return (ft_print_error(2, "Invalid PID\n"));
+			return (ft_print_error(2, "Invalid PID.\n"));
 		if (ft_sender(pid, av[2]))
-			return (ft_print_error(3, "Error in transfer\n"));
+			return (ft_print_error(3, "Error in transfer.\n"));
 	}
 	else
-		return (ft_print_error(4, "Invalid_arguments\n"));
+		return (ft_print_error(4, "Invalid_arguments.\n"));
 	return (0);
 }
