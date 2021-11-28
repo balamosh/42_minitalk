@@ -6,7 +6,7 @@
 /*   By: sotherys <sotherys@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 09:29:01 by sotherys          #+#    #+#             */
-/*   Updated: 2021/11/27 10:53:32 by sotherys         ###   ########.fr       */
+/*   Updated: 2021/11/28 13:07:08 by sotherys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,11 @@ t_bool	ft_string_push_back(t_string *str, char c)
 
 void	ft_string_free(t_string *str)
 {
-	free(str->ptr);
+	if (str->ptr)
+	{
+		free(str->ptr);
+		str->ptr = NULL;
+	}
 	str->capacity = 0;
 	str->size = 0;
 }

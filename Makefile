@@ -6,50 +6,55 @@ SRCS_DIR	= srcs/
 HEAD_DIR	= includes/
 BUILD_DIR	= build/
 
-LIBFT_SRCS	= libft/atoi.c			\
-			  libft/malloc.c		\
-			  libft/memcpy.c		\
-			  libft/print_error.c	\
-			  libft/putchar_fd.c	\
-			  libft/putnbr_fd.c		\
-			  libft/putstr_fd.c		\
-			  libft/string.c
+LIBFT_SRCS_FILES	= libft/atoi.c				\
+					  libft/malloc.c			\
+					  libft/memcpy.c			\
+					  libft/print_error.c		\
+					  libft/print_name_pid.c	\
+					  libft/putchar_fd.c		\
+					  libft/putnbr_fd.c			\
+					  libft/putstr_cd_fd.c		\
+					  libft/putstr_fd.c			\
+					  libft/string.c
 
-SERVER_SRCS	= server/server.c		\
-			  server/reciever.c
+SERVER_SRCS_FILES	= server/server.c			\
+					  server/reciever.c
 
-CLIENT_SRCS	= client/client.c		\
-			  client/reciever.c		\
-			  client/sender.c
+CLIENT_SRCS_FILES	= client/client.c			\
+			  		  client/reciever.c			\
+					  client/sender.c
 
-#SRCS_FILES	= $(SERVER_SRCS)
-SERVER_SRCS	:= $(SERVER_SRCS) $(LIBFT_SRCS)
-CLIENT_SRCS	:= $(CLIENT_SRCS) $(LIBFT_SRCS)
+SERVER_SRCS_FILES	:= $(SERVER_SRCS_FILES) $(LIBFT_SRCS_FILES)
+CLIENT_SRCS_FILES	:= $(CLIENT_SRCS_FILES) $(LIBFT_SRCS_FILES)
 
-OBJS_FILES	= $(SRCS_FILES:.c=.o)
-
-SRCS 		= $(addprefix $(SRCS_DIR), $(SRCS_FILES))
-OBJS		= $(addprefix $(BUILD_DIR), $(OBJS_FILES))
-DEPS		= $(OBJS:.o=.d)
+SERVER_SRCS = $(addprefix $(SRCS_DIR), $(SERVER_SRCS_FILES))
+CLIENT_SRCS = $(addprefix $(SRCS_DIR), $(CLIENT_SRCS_FILES))
+SERVER_OBJS	= $(addprefix $(BUILD_DIR), $(SERVER_SRCS_FILES:.c=.o))
+CLIENT_OBJS	= $(addprefix $(BUILD_DIR), $(CLIENT_SRCS_FILES:.c=.o))
+SERVER_DEPS = $(SERVER_OBJS:.o=.d)
+CLIENT_DEPS = $(CLIENT_OBJS:.o=.d)
+DEPS		= $(SERVER_OBJS:.o=.d) $(CLIENT_OBJS:.o=.d)
 
 CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra
 
 all: $(NAME)
 
-link: $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
+$(SERVER): $(SERVER_OBJS)
+	$(CC) $^ -o $@
 
-#$(SERVER): $(OBJS)
-#	$(CC) $(OBJS) -o $(SERVER)
+$(CLIENT): $(CLIENT_OBJS)
+	$(CC) $^ -o $@
 
-$(SERVER):
-	make SRCS_FILES='$(SERVER_SRCS)' NAME='$(SERVER)' link
-
-$(CLIENT):
-	make SRCS_FILES='$(CLIENT_SRCS)' NAME='$(CLIENT)' link
-
+ifeq ($(MAKECMDGOALS),)
 -include $(DEPS)
+endif
+ifeq ($(MAKECMDGOALS), $(SERVER))
+-include $(SERVER_DEPS)
+endif
+ifeq ($(MAKECMDGOALS), $(CLIENT))
+-include $(CLIENT_DEPS)
+endif
 
 $(BUILD_DIR)%.o: $(SRCS_DIR)%.c $(BUILD_DIR)%.d
 	mkdir -p $(@D)

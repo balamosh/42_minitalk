@@ -6,16 +6,17 @@
 /*   By: sotherys <sotherys@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 22:41:14 by sotherys          #+#    #+#             */
-/*   Updated: 2021/11/27 13:28:40 by sotherys         ###   ########.fr       */
+/*   Updated: 2021/11/28 11:46:32 by sotherys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SERVER_H
 # define SERVER_H
 
-#define _XOPEN_SOURCE 700
+//#define _XOPEN_SOURCE 700
 
 # include <signal.h>
+# include <unistd.h>
 # include "libft.h"
 
 typedef struct s_reciever

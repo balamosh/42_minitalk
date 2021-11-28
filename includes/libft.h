@@ -6,7 +6,7 @@
 /*   By: sotherys <sotherys@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:06:54 by sotherys          #+#    #+#             */
-/*   Updated: 2021/11/27 10:56:20 by sotherys         ###   ########.fr       */
+/*   Updated: 2021/11/28 13:25:55 by sotherys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include "shell_colors.h"
 
 typedef enum s_bool
 {
@@ -35,8 +36,11 @@ int		ft_atoi(const char *str);
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(const char *s, int fd);
+void	ft_putstr_cd_fd(const char *s, const char *cd, int fd);
 void	ft_putnbr_fd(int n, int fd);
 int		ft_print_error(int code, const char *str);
+void	ft_print_name_pid(const char *name, int pid);
+void	ft_print_name_pid_head(const char *name, int pid);
 
 t_bool	ft_string_push_back(t_string *str, char c);
 void	ft_string_free(t_string *str);

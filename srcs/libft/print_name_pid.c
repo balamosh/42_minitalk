@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.h                                           :+:      :+:    :+:   */
+/*   print_name_pid.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sotherys <sotherys@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 13:28:33 by sotherys          #+#    #+#             */
-/*   Updated: 2021/11/28 14:09:32 by sotherys         ###   ########.fr       */
+/*   Created: 2021/11/28 13:22:19 by sotherys          #+#    #+#             */
+/*   Updated: 2021/11/28 13:22:20 by sotherys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLIENT_H
-# define CLIENT_H
+#include "libft.h"
 
-//#define _XOPEN_SOURCE 700
-
-# include <signal.h>
-# include "libft.h"
-
-typedef struct s_reciever
+void	ft_print_name_pid(const char *name, int pid)
 {
-	t_bool	recieved;
-	t_bool	busy;
-}				t_reciever;
+	ft_putstr_fd(name, 1);
+	write(1, "[", 1);
+	ft_putstr_fd(SH_FG_CYAN, 1);
+	ft_putnbr_fd(pid, 1);
+	ft_putstr_fd(SH_FG_RESET, 1);
+	write(1, "]", 1);
+}
 
-t_reciever	g_status;
-
-int		ft_sender(pid_t pid, char *str);
-void	ft_reciever(int signal, siginfo_t *info, void *data);
-
-#endif
+void	ft_print_name_pid_head(const char *name, int pid)
+{
+	ft_print_name_pid(name, pid);
+	write(1, " : ", 3);
+}

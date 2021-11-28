@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.h                                           :+:      :+:    :+:   */
+/*   putstr_cd_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sotherys <sotherys@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 13:28:33 by sotherys          #+#    #+#             */
-/*   Updated: 2021/11/28 14:09:32 by sotherys         ###   ########.fr       */
+/*   Created: 2021/11/27 10:35:02 by sotherys          #+#    #+#             */
+/*   Updated: 2021/11/28 13:22:25 by sotherys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLIENT_H
-# define CLIENT_H
+#include "libft.h"
 
-//#define _XOPEN_SOURCE 700
-
-# include <signal.h>
-# include "libft.h"
-
-typedef struct s_reciever
+void	ft_putstr_cd_fd(const char *s, const char *cd, int fd)
 {
-	t_bool	recieved;
-	t_bool	busy;
-}				t_reciever;
-
-t_reciever	g_status;
-
-int		ft_sender(pid_t pid, char *str);
-void	ft_reciever(int signal, siginfo_t *info, void *data);
-
-#endif
+	ft_putstr_fd(cd, fd);
+	ft_putstr_fd(s, fd);
+	ft_putstr_fd(SH_FG_RESET, fd);
+}
