@@ -31,9 +31,8 @@ SERVER_SRCS = $(addprefix $(SRCS_DIR), $(SERVER_SRCS_FILES))
 CLIENT_SRCS = $(addprefix $(SRCS_DIR), $(CLIENT_SRCS_FILES))
 SERVER_OBJS	= $(addprefix $(BUILD_DIR), $(SERVER_SRCS_FILES:.c=.o))
 CLIENT_OBJS	= $(addprefix $(BUILD_DIR), $(CLIENT_SRCS_FILES:.c=.o))
-SERVER_DEPS = $(SERVER_OBJS:.o=.d)
-CLIENT_DEPS = $(CLIENT_OBJS:.o=.d)
 DEPS		= $(SERVER_OBJS:.o=.d) $(CLIENT_OBJS:.o=.d)
+NODEPS		= clean fclean re
 
 CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra
@@ -46,23 +45,14 @@ $(SERVER): $(SERVER_OBJS)
 $(CLIENT): $(CLIENT_OBJS)
 	$(CC) $^ -o $@
 
-ifeq ($(MAKECMDGOALS),)
--include $(DEPS)
-endif
-ifeq ($(MAKECMDGOALS), $(SERVER))
--include $(SERVER_DEPS)
-endif
-ifeq ($(MAKECMDGOALS), $(CLIENT))
--include $(CLIENT_DEPS)
-endif
-
 $(BUILD_DIR)%.o: $(SRCS_DIR)%.c $(BUILD_DIR)%.d
-	mkdir -p $(@D)
+	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -MMD -I $(HEAD_DIR) -o $@ -c $<
 
-$(BUILD_DIR)%.d: $(SRCS_DIR)%.c
-	mkdir -p $(@D)
-	$(CC) $(CFLAGS) -MMD -I $(HEAD_DIR) -o $(@:.d=.o) -c $<
+$(BUILD_DIR)%.d: ;
+
+$(DEPS):
+-include $(wildcard $(DEPS))
 
 clean: 
 	rm -rf $(BUILD_DIR)
@@ -74,4 +64,4 @@ re:
 	make fclean
 	make all
 
-.PHONY: all link clean fclean re
+.PHONY: all clean fclean re

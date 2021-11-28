@@ -6,12 +6,11 @@
 /*   By: sotherys <sotherys@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 10:53:25 by sotherys          #+#    #+#             */
-/*   Updated: 2021/11/28 11:39:57 by sotherys         ###   ########.fr       */
+/*   Updated: 2021/11/28 18:34:28 by sotherys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "shell_colors.h"
 
 int	ft_print_error(int code, const char *str)
 {

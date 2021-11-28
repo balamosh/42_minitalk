@@ -6,14 +6,12 @@
 /*   By: sotherys <sotherys@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:28:33 by sotherys          #+#    #+#             */
-/*   Updated: 2021/11/28 14:09:32 by sotherys         ###   ########.fr       */
+/*   Updated: 2021/11/29 01:59:50 by sotherys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CLIENT_H
 # define CLIENT_H
-
-//#define _XOPEN_SOURCE 700
 
 # include <signal.h>
 # include "libft.h"

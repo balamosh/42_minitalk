@@ -6,14 +6,12 @@
 /*   By: sotherys <sotherys@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 22:41:14 by sotherys          #+#    #+#             */
-/*   Updated: 2021/11/28 11:46:32 by sotherys         ###   ########.fr       */
+/*   Updated: 2021/11/29 01:59:59 by sotherys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SERVER_H
 # define SERVER_H
-
-//#define _XOPEN_SOURCE 700
 
 # include <signal.h>
 # include <unistd.h>
